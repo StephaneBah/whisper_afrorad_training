@@ -1,0 +1,4 @@
+name: openai/whisper-medium
+processor_name: openai/whisper-medium
+language: fr
+task: transcribe

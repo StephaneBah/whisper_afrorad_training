@@ -1,0 +1,5 @@
+device: cuda
+mixed_precision: fp16
+dataloader_num_workers: 4
+allow_tf32: true
+torch_compile: false

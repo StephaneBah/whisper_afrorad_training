@@ -1,0 +1,4 @@
+name: openai/whisper-small
+processor_name: openai/whisper-small
+language: fr
+task: transcribe

@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+outputs/
+checkpoints/
+wandb/
+.cache/
+.pytest_cache/
+.ipynb_checkpoints/
+.vscode/
+.idea/  

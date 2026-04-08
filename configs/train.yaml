@@ -1,0 +1,61 @@
+defaults:
+  - data: afroradvoice_fr
+  - model: whisper_small
+  - runtime: linux_gpu
+  - _self_
+
+project:
+  name: afrorad-whisper-train
+
+hf:
+  token_env: HF_TOKEN
+  push_to_hub: false
+  hub_model_id: ""
+
+training:
+  output_dir: outputs/train
+  seed: 3407
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 1
+  learning_rate: 3e-5
+  encoder_learning_rate: 8e-6
+  decoder_learning_rate: 4e-5
+  weight_decay: 0.01
+  warmup_steps: 100
+  max_steps: 1000
+  num_train_epochs: 3
+  evaluation_strategy: steps
+  save_strategy: steps
+  logging_steps: 20
+  eval_steps: 100
+  save_steps: 100
+  predict_with_generate: true
+  generation_max_length: 225
+  max_label_length: 448
+  fp16: true
+  bf16: false
+  gradient_checkpointing: true
+  encoder_unfreeze_layers: null
+  num_proc: 1
+  max_train_samples: null
+  max_eval_samples: null
+  resume_from_checkpoint: null
+
+preprocessing:
+  lowercase: true
+  strip_newlines: true
+
+logging:
+  report_to:
+    - none
+
+eval:
+  use_manifest_for_eval: false
+  manifest_path: manifests/test_manifest.example.json
+  fail_on_manifest_missing: false
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null

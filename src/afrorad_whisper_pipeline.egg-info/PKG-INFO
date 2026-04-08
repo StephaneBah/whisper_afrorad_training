@@ -1,0 +1,66 @@
+Metadata-Version: 2.4
+Name: afrorad-whisper-pipeline
+Version: 0.1.0
+Summary: Hydra + Accelerate pipeline for Whisper fine-tuning/evaluation on AfroRadVoice-FR
+Author: AfroRad Team
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: accelerate>=1.2.0
+Requires-Dist: datasets[audio]>=3.1.0
+Requires-Dist: evaluate>=0.4.3
+Requires-Dist: hydra-core>=1.3.2
+Requires-Dist: jiwer>=3.0.4
+Requires-Dist: matplotlib>=3.8.0
+Requires-Dist: numpy>=1.26.0
+Requires-Dist: omegaconf>=2.3.0
+Requires-Dist: pandas>=2.2.0
+Requires-Dist: soundfile>=0.12.1
+Requires-Dist: torch>=2.2.0
+Requires-Dist: torchaudio>=2.2.0
+Requires-Dist: transformers>=4.46.0
+Requires-Dist: huggingface-hub>=0.28.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0.0; extra == "dev"
+Requires-Dist: ruff>=0.9.0; extra == "dev"
+
+# AfroRad Whisper Pipeline
+
+Pipeline Hydra + Accelerate pour finetuning/evaluation Whisper sur `StephaneBah/AfroRadVoice-FR`.
+
+## Quickstart
+
+1. Installer les dependances:
+   - `make setup`
+2. Verifier l'environnement:
+   - `make doctor`
+3. Exporter le token Hugging Face:
+   - PowerShell: `$env:HF_TOKEN="hf_..."`
+   - Bash: `export HF_TOKEN="hf_..."`
+4. Lancer le training:
+   - `make train`
+5. Lancer l'evaluation:
+   - `make eval`
+6. Tout enchainer:
+   - `make run`
+
+## Overrides Hydra examples
+
+- Whisper base:
+  - `accelerate launch -m afrorad_pipeline.train model=whisper_base`
+- Whisper medium + 8 couches encodeur:
+  - `accelerate launch -m afrorad_pipeline.train model=whisper_medium training.encoder_unfreeze_layers=8`
+- Runtime Windows GPU:
+  - `accelerate launch -m afrorad_pipeline.train runtime=windows_gpu`
+
+## Security
+
+- Ne jamais commiter les tokens.
+- Utiliser `HF_TOKEN` via variable d'environnement.
+- Si des tokens ont ete exposes, les regenerer immediatement.
+
+## Manifest test
+
+- Le pipeline supporte deux formats:
+   - Legacy: `{ "audios": ["path1", "path2"] }`
+   - Recommande: `{ "manifest_version": 1, "entries": [{"audio": "..."}] }`
+- Voir l'exemple: `manifests/test_manifest.example.json`.

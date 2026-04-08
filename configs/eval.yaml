@@ -1,0 +1,31 @@
+defaults:
+  - data: afroradvoice_fr
+  - model: whisper_small
+  - runtime: linux_gpu
+  - _self_
+
+project:
+  name: afrorad-whisper-eval
+
+hf:
+  token_env: HF_TOKEN
+
+preprocessing:
+  lowercase: true
+  strip_newlines: true
+
+eval:
+  model_path_or_name: openai/whisper-small
+  compare_with_baseline: false
+  baseline_model_path_or_name: null
+  output_dir: outputs/eval
+  use_manifest_for_eval: false
+  manifest_path: manifests/test_manifest.example.json
+  fail_on_manifest_missing: false
+  max_samples: null
+  max_new_tokens: 256
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null

@@ -1,0 +1,19 @@
+{
+  "manifest_version": 1,
+  "dataset_id": "StephaneBah/AfroRadVoice-FR",
+  "path_mode": "relative_to_dataset_root",
+  "entries": [
+    {
+      "id": "report_example_001",
+      "audio": "report_example_001/recorded_audio.wav",
+      "split": "test",
+      "category": "example"
+    },
+    {
+      "id": "report_example_002",
+      "audio": "report_example_002/recorded_audio.wav",
+      "split": "test",
+      "category": "example"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+hf_dataset_id: StephaneBah/AfroRadVoice-FR
+dataset_config_name: null
+use_auth_token: true
+streaming: false
+train_split: train
+test_split: test
+audio_column: audio
+text_column: text
+sample_rate: 16000

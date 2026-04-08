@@ -1,0 +1,5 @@
+device: cpu
+mixed_precision: no
+dataloader_num_workers: 2
+allow_tf32: false
+torch_compile: false
